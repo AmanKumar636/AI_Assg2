@@ -1,4 +1,6 @@
 # src/utils.py
+
+import os
 import csv
 import time
 import numpy as np
@@ -36,7 +38,11 @@ def run_tsp_experiments(trials=5):
         print(f"Simulated Annealing Run {i+1}: Cost = {cost:.2f}, Iterations = {iterations}, Time = {runtime:.4f}s")
     return hc_times, sa_times
 
+
 def save_results_csv(bnb_times, ida_times, hc_times, sa_times):
+    # Ensure the 'data' directory exists
+    os.makedirs('data', exist_ok=True)
+    
     with open('data/results.csv', 'w', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(["Algorithm", "Trial", "Time (s)"])
@@ -61,6 +67,8 @@ def plot_results(bnb_times, ida_times, hc_times, sa_times):
     plt.title('Average Time to Reach Goal/Optimum')
     plt.show()
 
+
+
 if __name__ == "__main__":
     # Run experiments for search algorithms (Frozen Lake)
     bnb_times, ida_times = run_search_experiments(trials=5)
@@ -70,3 +78,5 @@ if __name__ == "__main__":
     save_results_csv(bnb_times, ida_times, hc_times, sa_times)
     # Plot the results
     plot_results(bnb_times, ida_times, hc_times, sa_times)
+
+

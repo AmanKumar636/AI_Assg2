@@ -6,7 +6,7 @@ def branch_and_bound(env: FrozenLake):
     start_time = time.time()
     best_solution = None
     best_cost = float('inf')
-    # Each stack element: (current position, cost so far, path taken)
+    # Each element in the stack is: (current position, cost so far, path taken)
     stack = [(env.start, 0, [env.start])]
     iterations = 0
 
@@ -19,12 +19,16 @@ def branch_and_bound(env: FrozenLake):
                 best_solution = path
         else:
             for neighbor in env.neighbors(pos):
-                step_cost = 1  # constant cost for moving between cells
+                # Prevent cycles: only add neighbor if it's not already in the current path.
+                if neighbor in path:
+                    continue
+                step_cost = 1  # constant step cost
                 new_cost = cost + step_cost
-                # Prune if new_cost + heuristic is not promising.
+                # Prune if estimated total cost exceeds current best solution.
                 if new_cost + env.heuristic(neighbor) < best_cost:
                     stack.append((neighbor, new_cost, path + [neighbor]))
-        if time.time() - start_time > 600:  # 10 minutes timeout
+        # Timeout condition to avoid endless run (10 minutes)
+        if time.time() - start_time > 600:
             print("Timeout reached in Branch and Bound.")
             break
 
