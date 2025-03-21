@@ -13,26 +13,24 @@ This project implements and evaluates search and optimization algorithms on two 
 The goal is to compare their performance in terms of reward/cost, time, and convergence characteristics.
 
 ## Repository Structure
-
 AI_Assg2/
-├── README.md                  # Overview and instructions
-├── requirements.txt           # List of dependencies
-├── src/                       # All source code
-│   ├── environment.py         # Frozen Lake environment definition
-│   ├── search_algorithms.py   # BnB and IDA* implementations
-│   ├── tsp_helpers.py         # Helper functions for TSP
-│   ├── optimization_algorithms.py  # Hill Climbing and SA for TSP
-│   ├── utils.py               # Script to run experiments & record performance
-│   └── plot_results.py        # Script to generate bar charts from results
-├── slides/                    # Presentation slide deck(s)
-│   └── slide_deck.pdf         # Your slide deck file (PDF format)
-├── gifs/                      # Animated GIFs of algorithm execution
-│   ├── FrozenLake.gif         # GIF showing the Frozen Lake algorithm in action
-│   └── TSP.gif                # GIF showing the TSP algorithm execution
-├── bar_charts/                # Generated bar charts (or saved images)
-│   └── execution_time_bar_chart.png  # Bar chart image file (or other formats)
-└── data/                      # Experimental data output
-    └── results.csv            # CSV file with performance metrics
+├── README.md                   # Project overview, instructions, and documentation
+├── requirements.txt            # List of Python dependencies (e.g., numpy, matplotlib, imageio)
+├── src/                        # All source code files
+│   ├── environment.py          # Defines the Frozen Lake environment and helper methods
+│   ├── search_algorithms.py    # Implements Branch and Bound (BnB) and IDA* for Frozen Lake
+│   ├── tsp_helpers.py          # Helper functions for TSP (distance calculations, neighbor generation)
+│   ├── optimization_algorithms.py  # Implements Hill Climbing and Simulated Annealing for TSP
+│   ├── utils.py                # Runs experiments, records performance (reward, iterations, time), and saves results to CSV
+│   ├── visualize_frozen_lake.py  # Generates visualization frames for the Frozen Lake environment
+│   └── visualize_tsp.py           # Generates visualization frames for the TSP environment
+├── gifs/                       # Contains animated GIFs demonstrating algorithm execution
+│   ├── FrozenLake.gif          # Final GIF for the Frozen Lake environment (search algorithms)
+│   └── TSP.gif                 # Final GIF for the TSP environment (optimization algorithms)
+├── slides/                     # Contains presentation materials
+│   └── slide_deck.pdf          # Final presentation slide deck (PDF format)
+└── data/                       # Contains experimental output data
+    └── results.csv             # CSV file with performance metrics (reward, iterations, time)
 
 
 
