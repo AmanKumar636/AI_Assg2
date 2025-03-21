@@ -1,4 +1,3 @@
-# src/search_algorithms.py
 import time
 from environment import FrozenLake
 
@@ -6,7 +5,7 @@ def branch_and_bound(env: FrozenLake):
     start_time = time.time()
     best_solution = None
     best_cost = float('inf')
-    # Each element in the stack is: (current position, cost so far, path taken)
+    # Stack element: (current position, cost so far, path taken)
     stack = [(env.start, 0, [env.start])]
     iterations = 0
 
@@ -19,15 +18,15 @@ def branch_and_bound(env: FrozenLake):
                 best_solution = path
         else:
             for neighbor in env.neighbors(pos):
-                # Prevent cycles: only add neighbor if it's not already in the current path.
+                # Avoid cycles by checking if neighbor is already in the path
                 if neighbor in path:
                     continue
-                step_cost = 1  # constant step cost
+                step_cost = 1  # constant cost per move
                 new_cost = cost + step_cost
-                # Prune if estimated total cost exceeds current best solution.
+                # Prune paths if estimated cost is not promising
                 if new_cost + env.heuristic(neighbor) < best_cost:
                     stack.append((neighbor, new_cost, path + [neighbor]))
-        # Timeout condition to avoid endless run (10 minutes)
+        # Timeout check (10 minutes)
         if time.time() - start_time > 600:
             print("Timeout reached in Branch and Bound.")
             break
@@ -52,14 +51,15 @@ def ida_star(env: FrozenLake):
             return path, f
         min_threshold = float('inf')
         for neighbor in env.neighbors(node):
-            if neighbor not in path:  # avoid cycles
-                path.append(neighbor)
-                result, temp_threshold = search(path, g + 1, threshold)
-                if result is not None:
-                    return result, temp_threshold
-                if temp_threshold < min_threshold:
-                    min_threshold = temp_threshold
-                path.pop()
+            if neighbor in path:  # prevent cycles
+                continue
+            path.append(neighbor)
+            result, temp_threshold = search(path, g + 1, threshold)
+            if result is not None:
+                return result, temp_threshold
+            if temp_threshold < min_threshold:
+                min_threshold = temp_threshold
+            path.pop()
         return None, min_threshold
 
     while True:

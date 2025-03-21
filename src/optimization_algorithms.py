@@ -1,7 +1,5 @@
-# src/optimization_algorithms.py
 import time, math, random
-from tsp_helpers import (total_distance, generate_cities, generate_distance_matrix,
-                         generate_initial_solution, generate_neighbors)
+from tsp_helpers import total_distance, generate_cities, generate_distance_matrix, generate_initial_solution, generate_neighbors
 
 def hill_climbing_tsp(num_cities=20):
     start_time = time.time()
@@ -25,8 +23,8 @@ def hill_climbing_tsp(num_cities=20):
             current_solution = best_neighbor
             current_cost = best_neighbor_cost
         else:
-            break  # Local optimum reached.
-        if time.time() - start_time > 600:  # 10 minutes timeout.
+            break  # local optimum reached
+        if time.time() - start_time > 600:
             print("Timeout reached in Hill Climbing TSP.")
             break
 
@@ -49,7 +47,7 @@ def simulated_annealing_tsp(num_cities=20, initial_temp=1000, cooling_rate=0.995
         neighbor[i], neighbor[j] = neighbor[j], neighbor[i]
         neighbor_cost = total_distance(neighbor, distance_matrix)
         delta = neighbor_cost - current_cost
-        if delta < 0 or random.uniform(0, 1) < math.exp(-delta / temp):
+        if delta < 0 or random.random() < math.exp(-delta / temp):
             current_solution = neighbor
             current_cost = neighbor_cost
         temp *= cooling_rate

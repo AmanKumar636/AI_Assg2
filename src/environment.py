@@ -1,4 +1,3 @@
-# src/environment.py
 import numpy as np
 
 class FrozenLake:
@@ -33,6 +32,7 @@ class FrozenLake:
         return pos == self.goal
 
     def neighbors(self, pos):
+        # Four directions: up, down, left, right.
         directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
         result = []
         for dr, dc in directions:
@@ -42,5 +42,5 @@ class FrozenLake:
         return result
 
     def heuristic(self, pos):
-        # Manhattan distance heuristic.
+        # Manhattan distance heuristic
         return abs(pos[0] - self.goal[0]) + abs(pos[1] - self.goal[1])
