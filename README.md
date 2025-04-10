@@ -13,6 +13,7 @@ This project implements and evaluates search and optimization algorithms on two 
 The goal is to compare their performance in terms of reward/cost, time, and convergence characteristics.
 
 ## Repository Structure
+```plaintext
 AI_Assg2/
 ├── README.md                   # Project overview, instructions, and documentation
 ├── requirements.txt            # List of Python dependencies (e.g., numpy, matplotlib, imageio)
@@ -32,7 +33,7 @@ AI_Assg2/
 └── data/                       # Contains experimental output data
     └── results.csv             # CSV file with performance metrics (reward, iterations, time)
 
-
+```
 
 
 ## Dependencies
@@ -46,17 +47,19 @@ Install these dependencies by running:
 
 ```bash
 pip install -r requirements.txt
+```
 
-
-Running the Experiments
+## Running the Experiments
 To execute the experiments and generate the results:
 
+```bash
 python src/utils.py
+```
 
 This script will:
 
-Run the search algorithms (BnB and IDA*) on the Frozen Lake environment.
-Run the optimization algorithms (Hill Climbing and Simulated Annealing) on a TSP instance.
-Print out metrics (cost, iterations, runtime) for each run (5 trials per algorithm).
-Save the results to data/results.csv.
-Display a bar chart comparing the average execution times.
+* Run the search algorithms (BnB and IDA*) on the Frozen Lake environment.
+* Run the optimization algorithms (Hill Climbing and Simulated Annealing) on a TSP instance.
+* Print out metrics (cost, iterations, runtime) for each run (5 trials per algorithm).
+* Save the results to data/results.csv.
+* Display a bar chart comparing the average execution times.
